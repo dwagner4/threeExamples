@@ -1,0 +1,132 @@
+:root {
+  --prussian-blue: #003049ff;
+  --maximum-red: #d62828ff;
+  --orange: #f77f00ff;
+  --maximum-yellow-red: #fcbf49ff;
+  --lemon-meringue: #eae2b7ff;
+  --primary-text-color: #003049ff;
+  --secondary-bg-color: #d62828ff;
+  --secondary-text-color: #f77f00ff;
+  --accent-color: #fcbf49ff;
+  --main-bg-color: #eae2b7ff;
+}
+
+html,
+body {
+  /* remove margins and scroll bars */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  /* style text */
+  text-align: center;
+  font-size: 12px;
+  font-family: Sans-Serif;
+
+  height: 100%;
+
+  /* color text */
+  color: var(--primary-text-color);
+  background-color: var(--main-bg-color);
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: var(--secondary-bg-color);
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav div {
+  float: left;
+  color: var(--accent-color);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav div:hover {
+  background-color: var(--secondary-bg-color);
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav div.active {
+  background-color: var(--primary-text-color);
+  color: white;
+}
+
+.story {
+  /* color: white; */
+  /* text-align: center; */
+  font-size: 18px;
+  font-family: Sans-Serif;
+  line-height: 1.8;
+  text-align: left;
+  width: 80%;
+  background-color: var(--accent-color);
+  position: fixed;
+  top: 20%;
+  left: 8%;
+  border: 2px solid var(--primary-text-color);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 780px) {
+  .story {
+    display: inline;
+    font-size: 12px;
+    line-height: 1.5;
+    width: 90%;
+    left: 3%;
+    padding: 10px;
+  }
+}
+
+h1 {
+  /* position the heading */
+  position: absolute;
+  width: 100%;
+  top: 10%;
+}
+
+#scene-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  outline: none;
+  z-index: -1;
+}
+
+.show-three {
+  z-index: 10;
+}
+
+#VRbtn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  display: none;
+  /* height: "40px"; */
+  padding: 5px;
+  font-size: medium;
+
+  border: 1px solid #fff;
+  border-radius: 5px;
+  background-color: rgba(20, 150, 80, 1);
+  color: white;
+  text-align: "center";
+  opacity: "0.5";
+  outline: "none";
+  z-index: 15;
+  opacity: 0.5;
+}
+
+#VRbtn:hover {
+  font-size: large;
+  opacity: 1;
+  /* background-color: blueviolet; */
+}
