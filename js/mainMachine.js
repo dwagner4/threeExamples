@@ -1,6 +1,30 @@
 import { createMachine, interpret, assign } from 'xstate'
 
-
+const threeStates = {
+  initial: 'first',
+  states: {
+    first: {
+      on: {
+        NEXT: { target: 'second' }
+      },
+    },
+    second: {
+      on: {
+        NEXT: { target: 'third' }
+      },
+    },
+    third: {
+      on: {
+        NEXT: { target: 'forth' }
+      },
+    },
+    forth: {
+      on: {
+        NEXT: { target: 'first' }
+      },
+    },
+  }
+}
 const mainMachine = createMachine(
   {
     initial: 'home',
@@ -10,25 +34,51 @@ const mainMachine = createMachine(
       threeDisplay: false,
     },
     states: {
+      loading: {
+        entry: [ 'selectload' ],
+        on: {
+          LOADED: {target: 'home'}
+        }
+      },
       home: {
         entry: [ 'selecthome' ],
         on: {
-          EXAMPLE: {target: 'example'},
-          TEST: {target: 'test'},
+          THREE: { target: 'three' },
+          VR: { target: 'vr' },
+          AR: { target: 'ar' },
+          STORY: { target: 'story' },
+          ABOUT: { target: 'about' },
         }
       },
-      test: {
+      three: {
         entry: [ 'selecttest'],
         on: {
-          HOME: {target: 'home'},
-          EXAMPLE: {target: 'example'},
+          HOME: { target: 'home' },
+        },
+        ...threeStates
+      },
+      vr: {
+        entry: [ 'selecttest'],
+        on: {
+          HOME: { target: 'home' }
         }
       },
-      example: {
-        entry: [ 'selectexample'],
+      ar: {
+        entry: [ 'selecttest'],
         on: {
-          HOME: {target: 'home'},
-          TEST: {target: 'test'},
+          HOME: { target: 'home' }
+        }
+      },
+      story: {
+        entry: [ 'selecttest'],
+        on: {
+          HOME: { target: 'home' }
+        }
+      },
+      about: {
+        entry: [ 'selecttest'],
+        on: {
+          HOME: { target: 'home' }
         }
       },
     }
@@ -37,13 +87,12 @@ const mainMachine = createMachine(
     actions: {
       'selecthome': assign( { topnav: 'home', msgdisplay: 'block', threeDisplay: false} ),
       'selecttest': assign( { topnav: 'test', msgdisplay: 'none', threeDisplay: false} ),
-      'selectexample': assign( { topnav: 'example', msgdisplay: 'none', threeDisplay: true} ),
     },
   }
 )
 
 const mainService = interpret(mainMachine)
-// mainService.onTransition((state) => console.log(state.value, state.context))
+mainService.onTransition((state) => console.log(state.value, state.context))
 mainService.start()
 
 export { mainMachine, mainService }

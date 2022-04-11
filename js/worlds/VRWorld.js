@@ -6,7 +6,7 @@ import { VRService } from '../systems/VRMachine.js'
 
 import Knight from '../objects/humans/Knight.js'
 
-export default class ZombieWorld
+export default class VRWorld
 {
   constructor()
   {     
@@ -99,7 +99,7 @@ export default class ZombieWorld
 
   dispose() {
     this.stage.disableVR()
-    this.cube.removeFromParent()
+    this.knight.model.removeFromParent()
     // this.light.removeFromParent()
     // this.ambLight.removeFromParent()
   }

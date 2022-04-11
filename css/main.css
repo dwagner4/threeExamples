@@ -23,86 +23,76 @@ body {
   font-size: 12px;
   font-family: Sans-Serif;
 
-  height: 100%;
-
   /* color text */
   color: var(--primary-text-color);
-  background-color: var(--main-bg-color);
-}
-
-/* Add a black background color to the top navigation */
-.topnav {
-  background-color: var(--secondary-bg-color);
-  overflow: hidden;
 }
 
 /* Style the links inside the navigation bar */
-.topnav div {
-  float: left;
-  color: var(--accent-color);
+.btn {
+  color: var(--primary-text-color);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
-}
-
-/* Change the color of links on hover */
-.topnav div:hover {
-  background-color: var(--secondary-bg-color);
-  color: black;
-}
-
-/* Add a color to the active/current link */
-.topnav div.active {
-  background-color: var(--primary-text-color);
-  color: white;
-}
-
-.story {
-  /* color: white; */
-  /* text-align: center; */
-  font-size: 18px;
-  font-family: Sans-Serif;
-  line-height: 1.8;
-  text-align: left;
-  width: 80%;
-  background-color: var(--accent-color);
-  position: fixed;
-  top: 20%;
-  left: 8%;
-  border: 2px solid var(--primary-text-color);
-  padding: 20px;
+  font-weight:bold;
+  opacity: 0.5;
+  border-style: solid;
+  border-width:5px;
   border-radius: 10px;
 }
 
+/* Change the color of links on hover */
+.btn:hover {
+  opacity: 1;
+}
+
+#homebtn {
+  position: fixed;
+  top: 50px;
+  left: 3%;
+}
+
+#nextbtn {
+  position: fixed;
+  top: 125px;
+  left: 3%;
+}
+
+#threebtn {
+  position: fixed;
+  top: 125px;
+  left: 3%;
+}
+
+#vrbtn {
+  position: fixed;
+  top: 200px;
+  left: 3%;
+}
+
+#arbtn {
+  position: fixed;
+  top: 275px;
+  left: 3%;
+}
+
+#storybtn {
+  position: fixed;
+  top: 350px;
+  left: 3%;
+}
+
+#aboutbtn {
+  position: fixed;
+  top: 425px;
+  left: 3%;
+}
+
 @media screen and (min-device-width: 320px) and (max-device-width: 780px) {
-  .story {
-    display: inline;
-    font-size: 12px;
-    line-height: 1.5;
-    width: 90%;
-    left: 3%;
-    padding: 10px;
-  }
-}
-
-h1 {
-  /* position the heading */
-  position: absolute;
-  width: 100%;
-  top: 10%;
-}
-
-#scene-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  outline: none;
-  z-index: -1;
-}
-
-.show-three {
-  z-index: 10;
+  /* .btn {
+    position: fixed;
+    bottom: 20px;
+  } */
 }
 
 #VRbtn {
@@ -121,7 +111,7 @@ h1 {
   text-align: "center";
   opacity: "0.5";
   outline: "none";
-  z-index: 15;
+  z-index: "999";
   opacity: 0.5;
 }
 
