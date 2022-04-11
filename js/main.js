@@ -29,8 +29,8 @@ arbtn.onclick = () => {mainService.send({type: 'AR'})}
 aboutbtn.onclick = () => {mainService.send({type: 'ABOUT'})}
 storybtn.onclick = () => {mainService.send({type: 'STORY'})}
 
-homebtn.onmouseover = () => console.log("fuck you")
-homebtn.onmouseout = () => console.log("fuck you twice")
+// homebtn.onmouseover = () => console.log("fuck you")
+// homebtn.onmouseout = () => console.log("fuck you twice")
 
 
 
@@ -51,8 +51,6 @@ const killWorld = () => {
 }
 
 const uiDisplay = ( state ) => {
-  console.log(state)
-  state === 'home' ? console.log('yeah') : console.log('fuck you')
   if (state === 'home') 
   {
     homebtn.style.display = 'none'
@@ -75,7 +73,6 @@ const uiDisplay = ( state ) => {
   }
   else 
   {
-    console.log('WTF?')
     homebtn.style.display = 'block'
     nextbtn.style.display = 'block'
     threebtn.style.display = 'none'
@@ -94,10 +91,39 @@ const setMenuActive = (menuName) => {
   menuName === 'about' ? aboutbtn.classList.add("active") : aboutbtn.classList.remove("active")
 }
 
+let currentState = null
+
 const STATE_TO_WORLD = {
   home: { path: './worlds/HomeWorld.js', options: {vr: false }},
-  three: { path: './worlds/ThreeWorld.js', options: {vr: false }},
+  // three: { path: './worlds/ThreeWorld.js', options: {vr: false }},
+  three: { 
+    first: {path: './worlds/ThreeWorld.js', options: {vr: false }},
+    second: {path: './worlds/AboutWorld.js', options: {vr: false }},
+    third: {path: './worlds/StoryWorld.js', options: {vr: false }},
+    forth: {path: './worlds/ARWorld.js', options: {vr: false }},
+  },
   vr: { path: './worlds/VRWorld.js', options: {vr: true }},
+  ar: { path: './worlds/ARWorld.js', options: {vr: true }},
+  story: { path: './worlds/StoryWorld.js', options: {vr: false }},
+  about: { path: './worlds/AboutWorld.js', options: {vr: false }},
+}
+
+/** only goes two levels deep */
+const getPath = (stateValue) => 
+{
+  console.log(stateValue)
+  if (typeof stateValue === 'string' || stateValue instanceof String) 
+  {
+    console.log('returning', STATE_TO_WORLD[stateValue].path)
+    return STATE_TO_WORLD[stateValue].path
+  }
+  else 
+  {
+    const keys = Object.keys(stateValue)
+    const header = keys[0]
+    const yoPath = header + '.' + stateValue[header]
+    return STATE_TO_WORLD[header][stateValue[header]].path
+  }
 }
 
 /**
@@ -108,34 +134,18 @@ mainService.subscribe((state) => {
   setMenuActive(state.context.topnav)
   uiDisplay(state.value)
 
-  if ( state.value === 'home' ) {
+  if (currentState !== state.value)
+  {
     if (stage.world) { killWorld() }
-    import('./worlds/HomeWorld.js')
+    const thePath = getPath(state.value) || './worlds/HomeWorld.js'
+    import(/* @vite-ignore */thePath)
       .then((module) => 
       {
         stage.world = new module.default()
         stage.world.init(STATE_TO_WORLD.home.options)
         stage.start()
+        currentState = state.value
       })
-  }
-  if ( state.value === 'three' ) {
-    if (stage.world) { killWorld() }
-    import('./worlds/ThreeWorld.js')
-      .then((module) => 
-      {
-        stage.world = new module.default()
-        stage.world.init(STATE_TO_WORLD.home.options)
-        stage.start()
-      })
-  }
-  if ( state.value === 'vr' ) {
-    if (stage.world) { killWorld() }
-    import('./worlds/VRWorld.js')
-      .then((module) => 
-      {
-        stage.world = new module.default()
-        stage.world.init(STATE_TO_WORLD.vr.options)
-        stage.start()
-      })
+    
   }
 })

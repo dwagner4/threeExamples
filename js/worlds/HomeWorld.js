@@ -56,14 +56,14 @@ export default class HomeWorld
 
   dispose() {
     this.stage.disableVR()
-    console.log("a")
+
     this.cube.model.removeFromParent()
-    console.log("aa")
+
     // this.light.removeFromParent()
     // console.log("aaa")
     // this.hemiblight.removeFromParent()
     // console.log("aaaa")
     // this.plane.removeFromParent()
-    console.log("aaaaa")
+
   }
 }

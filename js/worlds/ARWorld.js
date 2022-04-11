@@ -2,7 +2,7 @@ import Stage from '../systems/Stage.js'
 import * as THREE from 'three'
 import GeoCube from '../objects/geoShapes/GeoCube.js'
 
-export default class ThreeWorld
+export default class ARWorld
 {
   constructor()
   {     
@@ -12,7 +12,7 @@ export default class ThreeWorld
     this.scene = this.stage.scene
     this.time = this.stage.time
     // this.scene.add 
-    this.scene.background = new THREE.Color(0x888833)
+    this.scene.background = new THREE.Color(0x669966)
     this.renderer = this.stage.renderer
 
     const hemilight = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
