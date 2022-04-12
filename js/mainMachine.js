@@ -9,29 +9,60 @@ const STATE_TO_WORLD = {
   ABOUT: { path: './worlds/AboutWorld.js', options: {vr: false }},
 }
 
+const thirdLevel = {
+  initial: 'a',
+  states: {
+    a: {
+      entry: [ 'selecttest' ],
+      on: {
+        NEXT: { target: 'b' }
+      },
+    },
+    b: {
+      entry: [ 'selecttest' ],
+      on: {
+        NEXT: { target: 'c' }
+      },
+    },
+    c: {
+      entry: [ 'selecttest' ],
+      on: {
+        NEXT: { target: 'd' }
+      },
+    },
+    d: {
+      entry: [ 'selecttest' ],
+      on: {
+        NEXT: { target: 'a' }
+      },
+    },
+  }
+}
+
 const threeStates = {
   initial: 'first',
   states: {
     first: {
-      entry: [ 'selecttest', 'setWorldPath' ],
+      entry: [ 'selecttest' ],
       on: {
         NEXT: { target: 'second' }
       },
+      ...thirdLevel
     },
     second: {
-      entry: [ 'selecttest', 'setWorldPath' ],
+      entry: [ 'selecttest' ],
       on: {
         NEXT: { target: 'third' }
       },
     },
     third: {
-      entry: [ 'selecttest', 'setWorldPath' ],
+      entry: [ 'selecttest' ],
       on: {
         NEXT: { target: 'forth' }
       },
     },
     forth: {
-      entry: [ 'selecttest', 'setWorldPath' ],
+      entry: [ 'selecttest' ],
       on: {
         NEXT: { target: 'first' }
       },
@@ -55,7 +86,7 @@ const mainMachine = createMachine(
         }
       },
       home: {
-        entry: [ 'selecthome', 'setWorldPath' ],
+        entry: [ 'selecthome' ],
         on: {
           THREE: { target: 'three' },
           VR: { target: 'vr' },
@@ -65,32 +96,32 @@ const mainMachine = createMachine(
         }
       },
       three: {
-        entry: [ 'selecttest', 'logPath'] ,
+        entry: [ 'selecttest' ],
         on: {
           HOME: { target: 'home' },
         },
         ...threeStates
       },
       vr: {
-        entry: [ 'selecttest', 'setWorldPath' ],
+        entry: [ 'selecttest' ],
         on: {
           HOME: { target: 'home' }
         }
       },
       ar: {
-        entry: [ 'selecttest', 'setWorldPath' ],
+        entry: [ 'selecttest' ],
         on: {
           HOME: { target: 'home' }
         }
       },
       story: {
-        entry: [ 'selecttest', 'setWorldPath' ],
+        entry: [ 'selecttest' ],
         on: {
           HOME: { target: 'home' }
         }
       },
       about: {
-        entry: [ 'selecttest', 'setWorldPath' ],
+        entry: [ 'selecttest' ],
         on: {
           HOME: { target: 'home' }
         }
@@ -101,11 +132,6 @@ const mainMachine = createMachine(
     actions: {
       'selecthome': assign( { topnav: 'home', msgdisplay: 'block', threeDisplay: false} ),
       'selecttest': assign( { topnav: 'test', msgdisplay: 'none', threeDisplay: false} ),
-      'setWorldPath': assign( { worldPath: (context, event) => STATE_TO_WORLD[event.type]?.path || null } ),
-      // 'setWorldPath': assign( { worldPath: (context, event) => STATE_TO_WORLD[event.type]?.path || null } ),
-      'logPath': (context, event) => {
-        console.log(context, event)
-      }
     },
   }
 )

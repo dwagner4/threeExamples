@@ -97,7 +97,12 @@ const STATE_TO_WORLD = {
   home: { path: './worlds/HomeWorld.js', options: {vr: false }},
   // three: { path: './worlds/ThreeWorld.js', options: {vr: false }},
   three: { 
-    first: {path: './worlds/ThreeWorld.js', options: {vr: false }},
+    first: {
+      a: {path: './worlds/ThreeWorld.js', options: {vr: false }},
+      b: {path: './worlds/ThreeWorld.js', options: {vr: false }},
+      c: {path: './worlds/ThreeWorld.js', options: {vr: false }},
+      d: {path: './worlds/ThreeWorld.js', options: {vr: false }},
+    },
     second: {path: './worlds/AboutWorld.js', options: {vr: false }},
     third: {path: './worlds/StoryWorld.js', options: {vr: false }},
     forth: {path: './worlds/ARWorld.js', options: {vr: false }},
@@ -108,22 +113,36 @@ const STATE_TO_WORLD = {
   about: { path: './worlds/AboutWorld.js', options: {vr: false }},
 }
 
-/** only goes two levels deep */
+/** 
+ * searches the STATE_TO_WORLD object for a path, 
+ * maybe should just return oject 
+ */
 const getPath = (stateValue) => 
 {
-  console.log(stateValue)
-  if (typeof stateValue === 'string' || stateValue instanceof String) 
+  let header = []
+  let childState = stateValue
+  let loop = true
+  while(loop)
   {
-    console.log('returning', STATE_TO_WORLD[stateValue].path)
-    return STATE_TO_WORLD[stateValue].path
+    if (typeof childState === 'string' || childState instanceof String) 
+    {
+      header.push(childState)
+      loop = false
+    }
+    else 
+    {
+      let keys = Object.keys(childState)
+      let localKey = keys[0]
+      header.push(localKey)
+      childState = childState[localKey] 
+    }
   }
-  else 
-  {
-    const keys = Object.keys(stateValue)
-    const header = keys[0]
-    const yoPath = header + '.' + stateValue[header]
-    return STATE_TO_WORLD[header][stateValue[header]].path
+  let stateMap = STATE_TO_WORLD
+  for (let z = 0; z < header.length; z++) {
+    const element = header[z]
+    stateMap = stateMap[element]
   }
+  return stateMap.path
 }
 
 /**
