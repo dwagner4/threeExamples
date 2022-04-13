@@ -1,6 +1,14 @@
 import * as THREE from 'three'  //  node module import
 import Stage from './systems/Stage.js'
 import { mainService } from './mainMachine.js'
+import { 
+  homeover, msgout,
+  threeover, 
+  vrover, 
+  arover, 
+  storyover, 
+  aboutover, 
+} from './mainFunctions.js'
 
 
 /**
@@ -13,7 +21,6 @@ const arbtn = document.querySelector('#arbtn')
 const storybtn = document.querySelector('#storybtn')
 const aboutbtn = document.querySelector('#aboutbtn')
 const nextbtn = document.querySelector('#nextbtn')
-const msgArea = document.querySelector('#msg-area')
 
 /**
  * html to state machine event listeners
@@ -26,14 +33,18 @@ arbtn.onclick = () => {mainService.send({type: 'AR'})}
 aboutbtn.onclick = () => {mainService.send({type: 'ABOUT'})}
 storybtn.onclick = () => {mainService.send({type: 'STORY'})}
 
-homebtn.onmouseover = () => {
-  console.log("fuck you")
-  msgArea.innerHTML = `<b>Fuck you</b>`
-}
-homebtn.onmouseout = () => {
-  console.log("fuck you again")
-  msgArea.innerHTML = `<b>Asshole</b>`
-}
+homebtn.onmouseover = homeover
+homebtn.onmouseout = msgout
+threebtn.onmouseover = threeover
+threebtn.onmouseout = msgout
+vrbtn.onmouseover = vrover
+vrbtn.onmouseout = msgout
+arbtn.onmouseover = arover
+arbtn.onmouseout = msgout
+aboutbtn.onmouseover = aboutover
+aboutbtn.onmouseout = msgout
+storybtn.onmouseover = storyover
+storybtn.onmouseout = msgout
 
 /**
  * create Global stage
