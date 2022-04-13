@@ -31,7 +31,7 @@ export default class HomeWorld
     this.objectsToUpdate = []
   }
 
-  async init(options) 
+  async init() 
   {
     this.raycaster = new THREE.Raycaster()
     this.workingMatrix = new THREE.Matrix4()

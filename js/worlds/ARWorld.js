@@ -31,7 +31,7 @@ export default class ARWorld
     this.objectsToUpdate = []
   }
 
-  async init(options) 
+  async init() 
   {
     this.raycaster = new THREE.Raycaster()
     this.workingMatrix = new THREE.Matrix4()
@@ -56,14 +56,14 @@ export default class ARWorld
 
   dispose() {
     this.stage.disableVR()
-    console.log("a")
+
     this.cube.model.removeFromParent()
-    console.log("aa")
+
     // this.light.removeFromParent()
     // console.log("aaa")
     // this.hemiblight.removeFromParent()
     // console.log("aaaa")
     // this.plane.removeFromParent()
-    console.log("aaaaa")
+
   }
 }

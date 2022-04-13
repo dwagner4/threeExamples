@@ -34,7 +34,7 @@ export default class VRWorld
     this.objectsToUpdate = []
   }
 
-  async init(options) 
+  async init() 
   {
 
     this.knight = new Knight()
@@ -50,7 +50,7 @@ export default class VRWorld
     this.dolly.position.set(0,0,5)
     this.scene.add( this.dolly );
 
-    if (options?.vr) {
+    if (true) {
       const gripModels = []
       this.stage.enableVR( gripModels, controllerHandlers )
 

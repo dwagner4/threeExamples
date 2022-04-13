@@ -1,14 +1,5 @@
 import { createMachine, interpret, assign } from 'xstate'
 
-const STATE_TO_WORLD = {
-  HOME: { path: './worlds/HomeWorld.js', options: {vr: false }},
-  THREE: { path: './worlds/ThreeWorld.js', options: {vr: false }},
-  VR: { path: './worlds/VRWorld.js', options: {vr: true }},
-  AR: { path: './worlds/ARWorld.js', options: {vr: true }},
-  STORY: { path: './worlds/StoryWorld.js', options: {vr: false }},
-  ABOUT: { path: './worlds/AboutWorld.js', options: {vr: false }},
-}
-
 const thirdLevel = {
   initial: 'a',
   states: {
@@ -43,26 +34,26 @@ const threeStates = {
   initial: 'first',
   states: {
     first: {
-      entry: [ 'selecttest' ],
+      entry: [ 'selectnext' ],
       on: {
         NEXT: { target: 'second' }
       },
-      ...thirdLevel
+      // ...thirdLevel
     },
     second: {
-      entry: [ 'selecttest' ],
+      entry: [ 'selectnext' ],
       on: {
         NEXT: { target: 'third' }
       },
     },
     third: {
-      entry: [ 'selecttest' ],
+      entry: [ 'selectnext' ],
       on: {
         NEXT: { target: 'forth' }
       },
     },
     forth: {
-      entry: [ 'selecttest' ],
+      entry: [ 'selectnext' ],
       on: {
         NEXT: { target: 'first' }
       },
@@ -130,8 +121,33 @@ const mainMachine = createMachine(
   },
   {
     actions: {
-      'selecthome': assign( { topnav: 'home', msgdisplay: 'block', threeDisplay: false} ),
-      'selecttest': assign( { topnav: 'test', msgdisplay: 'none', threeDisplay: false} ),
+      'selecthome': assign( { 
+        homebtn: 'block',
+        nextbtn: 'none',
+        threebtn: 'block',
+        vrbtn: 'block',
+        arbtn: 'block',
+        aboutbtn: 'block',
+        storybtn: 'block',
+      } ),
+      'selecttest': assign( { 
+        homebtn: 'block',
+        nextbtn: 'none',
+        threebtn: 'none',
+        vrbtn: 'none',
+        arbtn: 'none',
+        aboutbtn: 'none',
+        storybtn: 'none',
+      } ),
+      'selectnext': assign( { 
+        homebtn: 'block',
+        nextbtn: 'block',
+        threebtn: 'none',
+        vrbtn: 'none',
+        arbtn: 'none',
+        aboutbtn: 'none',
+        storybtn: 'none',
+      } ),
     },
   }
 )

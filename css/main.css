@@ -44,6 +44,13 @@ body {
 /* Change the color of links on hover */
 .btn:hover {
   opacity: 1;
+  cursor: pointer;
+}
+
+#msg-area {
+  position: fixed;
+  top: 50px;
+  left: 25%;
 }
 
 #homebtn {
