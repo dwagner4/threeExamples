@@ -23,9 +23,15 @@ const msgout = () => {
 const threeover = () => {
   msgArea.style.display = 'block'
   msgArea.innerHTML = `
-  <h1>The Web is better than Native</h1> 
+  <h1>WebApps are better than Native Apps</h1> 
   <ul>
-    <li>Distribution, Ads?</li>
+    <li>Free Distribution, No stores?</li>
+    <li>low cost of entry</li>
+    <li>more monitization possibilities</li>
+    <li>Rapid updates</li>
+  </ul>
+  <h3>Example scenes</h3>
+  <ul>
     <li>Landscapes, navigation</li>
     <li>Characters, Interaction</li>
     <li>Interior scenes</li>
@@ -83,6 +89,17 @@ const aboutover = () => {
     <li>Working on Production Grade THREE.js Architecture</li>
     <li>Still a Programmer, not an Artist</li>
   </ul>
+
+  <p>I want to develop immersive WebXR/VR/AR apps or components using ThreeJS. This is the direction of the Web and it is more fun. Once you've made the decision to include immersive elements in your web app, there is little reason to use HTML/CSS except for the splash page.
+  </p>
+  <p>For several years I've been playing around the edges of 3D systems with Unity, Babylon.js, aFrame and Three.js. In November I decided to go in depth on Three.js exclusively (while completing an addition to my house). I'm within striking distance of where I'd like to be.
+  </p>
+  <p>I'd like to work with a team of similarly motivated people It is also obvious that much of the immersive world is in the hands of the artists.
+  </p>
+  <p>I've adopted Blender as a learning objective, but I'm much more of a programmer than I'll ever be an artist. Still there is a strong need to condition models and convert to .glb
+  </p>
+  <p>I have used several web component frameworks including React, Vue, and Polymer. On the backend I've used Google AppEngine/Cloud, and AWS. Also very good at business analysis.
+  </p>  
   `
 }
 

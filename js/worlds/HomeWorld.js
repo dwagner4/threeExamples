@@ -12,7 +12,7 @@ export default class HomeWorld
     this.scene = this.stage.scene
     this.time = this.stage.time
     // this.scene.add 
-    this.scene.background = new THREE.Color(0x886666)
+    this.scene.background = new THREE.Color(0x003049)
     this.renderer = this.stage.renderer
 
     const hemilight = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
