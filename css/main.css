@@ -60,6 +60,15 @@ body {
   display: block;
 }
 
+#loading {
+  /* z-index: "10"; */
+  width:10%;
+  position: fixed;
+  top: 25%;
+  left: 45%;
+  /* background-color: #d62828; */
+}
+
 #msg-area {
   display: none;
   position: fixed;

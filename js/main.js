@@ -20,7 +20,7 @@ const vrbtn = document.querySelector('#vrbtn')
 const arbtn = document.querySelector('#arbtn')
 const storybtn = document.querySelector('#storybtn')
 const aboutbtn = document.querySelector('#aboutbtn')
-const nextbtn = document.querySelector('#nextbtn')
+const loadingSVG = document.querySelector('#loading')
 
 /**
  * html to state machine event listeners
@@ -123,6 +123,7 @@ mainService.subscribe((state) => {
   arbtn.style.display = state.context.arbtn
   aboutbtn.style.display = state.context.aboutbtn
   storybtn.style.display = state.context.storybtn
+  loadingSVG.style.display = state.context.loadingSVG
 
   // changing world, don't want to restart world if not changed
   const stateStr = parseState(state.value)

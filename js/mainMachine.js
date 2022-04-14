@@ -84,37 +84,43 @@ const mainMachine = createMachine(
           AR: { target: 'ar' },
           STORY: { target: 'story' },
           ABOUT: { target: 'about' },
+          LOADED: {target: '', actions: [ 'loaded' ] }
         }
       },
       three: {
         entry: [ 'selecttest' ],
         on: {
           HOME: { target: 'home' },
+          LOADED: {target: '', actions: [ 'loaded' ] },
         },
         ...threeStates
       },
       vr: {
         entry: [ 'selecttest' ],
         on: {
-          HOME: { target: 'home' }
+          HOME: { target: 'home' },
+          LOADED: {target: '', actions: [ 'loaded' ] },
         }
       },
       ar: {
         entry: [ 'selecttest' ],
         on: {
-          HOME: { target: 'home' }
+          HOME: { target: 'home' },
+          LOADED: {target: '', actions: [ 'loaded' ] },
         }
       },
       story: {
         entry: [ 'selecttest' ],
         on: {
-          HOME: { target: 'home' }
+          HOME: { target: 'home' },
+          LOADED: {target: '', actions: [ 'loaded' ] },
         }
       },
       about: {
         entry: [ 'selecttest' ],
         on: {
-          HOME: { target: 'home' }
+          HOME: { target: 'home' },
+          LOADED: {target: '', actions: [ 'loaded' ] },
         }
       },
     }
@@ -129,6 +135,7 @@ const mainMachine = createMachine(
         arbtn: 'block',
         aboutbtn: 'block',
         storybtn: 'block',
+        loadingSVG: 'block',
       } ),
       'selecttest': assign( { 
         homebtn: 'block',
@@ -138,6 +145,7 @@ const mainMachine = createMachine(
         arbtn: 'none',
         aboutbtn: 'none',
         storybtn: 'none',
+        loadingSVG: 'block',
       } ),
       'selectnext': assign( { 
         homebtn: 'block',
@@ -147,7 +155,9 @@ const mainMachine = createMachine(
         arbtn: 'none',
         aboutbtn: 'none',
         storybtn: 'none',
+        loadingSVG: 'block',
       } ),
+      'loaded': assign({ loadingSVG: 'none', })
     },
   }
 )

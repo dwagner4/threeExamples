@@ -1,15 +1,17 @@
 import Stage from '../systems/Stage.js'
 import * as THREE from 'three'
-import GeoCube from '../objects/geoShapes/GeoCube.js'
+
 import DancingGirl from '../objects/dancingGirl/DancingGirl.js'
 import dirtColorUrl from '../../assets/textures/dirt/color.jpg?url'
 import dirtNormalUrl from '../../assets/textures/dirt/normal.jpg?url'
+import { mainService } from '../mainMachine.js'
 
 export default class HomeWorld
 {
   constructor()
   {     
     console.log("in the constructor")
+
     this.stage = new Stage()
     this.stage.camera.instance.position.set(0,1.6,5)
     this.scene = this.stage.scene
@@ -67,6 +69,8 @@ export default class HomeWorld
     // this.girl.model.position.set(0,0,0)
     this.girl.model.translateZ(1)
     this.scene.add(this.girl.model)
+
+    mainService.send({type: 'LOADED'})
 
     // this.cube = new GeoCube(1, 0xbb8844)
     // this.scene.add(this.cube.model)

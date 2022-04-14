@@ -1,6 +1,7 @@
 import Stage from '../systems/Stage.js'
 import * as THREE from 'three'
 import GeoCube from '../objects/geoShapes/GeoCube.js'
+import { mainService } from '../mainMachine.js'
 
 export default class StoryWorld
 {
@@ -42,6 +43,8 @@ export default class StoryWorld
     this.cube = new GeoCube(1, 0xbb8844)
     this.scene.add(this.cube.model)
     this.objectsToUpdate.push(this.cube)
+
+    mainService.send({type: 'LOADED'})
   }
 
   update()

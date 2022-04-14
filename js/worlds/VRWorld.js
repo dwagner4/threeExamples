@@ -3,6 +3,7 @@ import * as THREE from 'three'
 import VRcontrollers from '../systems/VRcontrollers.js'
 import { controllerHandlers } from './bubbleWorldVRhandlers.js'
 import { VRService } from '../systems/VRMachine.js'
+import { mainService } from '../mainMachine.js'
 
 import Knight from '../objects/humans/Knight.js'
 
@@ -79,6 +80,7 @@ export default class VRWorld
     this.workingMatrix = new THREE.Matrix4()
     this.workingVector = new THREE.Vector3() 
 
+    mainService.send({type: 'LOADED'})
   }
 
   update()
