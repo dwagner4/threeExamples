@@ -12,21 +12,23 @@ export default class ThreeWorld
     this.scene = this.stage.scene
     this.time = this.stage.time
     // this.scene.add 
-    this.scene.background = new THREE.Color(0x888833)
+    this.scene.background = new THREE.Color(0x003049)
     this.renderer = this.stage.renderer
 
-    const hemilight = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
-    this.scene.add( hemilight );
+    this.hemilight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 1 );
+    this.scene.add( this.hemilight );
 
-    const light = new THREE.DirectionalLight( 0xffffff );
-    light.position.set( 1, 1, 1 ).normalize();
-    this.scene.add( light );
+    this.light = new THREE.DirectionalLight( 0xffffff );
+    this.light.position.set( 1, 1, 1 ).normalize();
+    this.scene.add( this.light );
+
 
     const geometry = new THREE.PlaneGeometry( 10, 10, 10, 10 );
     const material = new THREE.MeshBasicMaterial( {color: 0x333333, side: THREE.DoubleSide, wireframe: true} );
-    const plane = new THREE.Mesh( geometry, material );
-    plane.rotateX(Math.PI / 2)
-    this.scene.add( plane );
+    this.plane = new THREE.Mesh( geometry, material );
+    this.plane.rotateX(- Math.PI / 2)
+    this.plane.translateZ(-1)
+    this.scene.add( this.plane );
 
     this.objectsToUpdate = []
   }
@@ -58,6 +60,9 @@ export default class ThreeWorld
     this.stage.disableVR()
     
     this.cube.model.removeFromParent()
+    this.plane.removeFromParent()
+    this.hemilight.removeFromParent()
+    this.light.removeFromParent()
     
     // this.light.removeFromParent()
     // console.log("aaa")

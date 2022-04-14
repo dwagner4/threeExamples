@@ -16,12 +16,12 @@ export default class HomeWorld
     this.scene.background = new THREE.Color(0x003049)
     this.renderer = this.stage.renderer
 
-    const hemilight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 1 );
-    this.scene.add( hemilight );
+    this.hemilight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 1 );
+    this.scene.add( this.hemilight );
 
-    const light = new THREE.DirectionalLight( 0xffffff );
-    light.position.set( 1, 1, 1 ).normalize();
-    this.scene.add( light );
+    this.light = new THREE.DirectionalLight( 0xffffff );
+    this.light.position.set( 1, 1, 1 ).normalize();
+    this.scene.add( this.light );
 
     const geometry = new THREE.CircleGeometry( 1, 32 );
     const material = new THREE.MeshBasicMaterial( {color: 0xff1600} );
@@ -71,6 +71,8 @@ export default class HomeWorld
 
     this.girl.model.removeFromParent()
     this.plane.removeFromParent()
+    this.hemilight.removeFromParent()
+    this.light.removeFromParent()
 
     // this.light.removeFromParent()
     // console.log("aaa")
