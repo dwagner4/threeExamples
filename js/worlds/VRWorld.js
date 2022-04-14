@@ -29,7 +29,7 @@ export default class VRWorld
 
 
     const geometry = new THREE.PlaneGeometry( 10, 10, 10, 10 );
-    const material = new THREE.MeshBasicMaterial( {color: 0x333333, side: THREE.DoubleSide, wireframe: true} );
+    const material = new THREE.MeshBasicMaterial( {color: 0x333333, side: THREE.DoubleSide } );
     this.plane = new THREE.Mesh( geometry, material );
     this.plane.rotateX(- Math.PI / 2)
     this.plane.translateZ(-1)
@@ -45,7 +45,8 @@ export default class VRWorld
     await this.knight.init()
     console.log(this.knight)
     this.knight.model.scale.set(0.01,0.01,0.01)
-    this.knight.model.position.set(0,0,0)
+    // this.knight.model.position.set(0,0,0)
+    this.knight.model.translateZ(1)
     this.scene.add(this.knight.model)
     // console.log(this.knight.mixer)
 
@@ -89,7 +90,7 @@ export default class VRWorld
       this.scene.background = new THREE.Color(0x000000)
       this.rightJoystick.xAxis > 0.5 ? this.scene.background = new THREE.Color(0xff0000) : this.scene.background = new THREE.Color(0x8888ff)
     } else {
-      this.scene.background = new THREE.Color(0xdddddd)
+      this.scene.background = new THREE.Color(0x003049)
     }
     if (this.rightButtons?.xr_standard_thumbstick === 1 ) {
       this.scene.background = new THREE.Color(0xddffdd)
