@@ -2,6 +2,8 @@ import Stage from '../systems/Stage.js'
 import * as THREE from 'three'
 import GeoCube from '../objects/geoShapes/GeoCube.js'
 import DancingGirl from '../objects/dancingGirl/DancingGirl.js'
+import dirtColorUrl from '../../assets/textures/dirt/color.jpg?url'
+import dirtNormalUrl from '../../assets/textures/dirt/normal.jpg?url'
 
 export default class HomeWorld
 {
@@ -23,8 +25,27 @@ export default class HomeWorld
     this.light.position.set( 1, 1, 1 ).normalize();
     this.scene.add( this.light );
 
-    const geometry = new THREE.CircleGeometry( 1, 32 );
-    const material = new THREE.MeshBasicMaterial( {color: 0xff1600} );
+    const geometry = new THREE.CircleGeometry( 1.5, 32 );
+
+    const textureLoader = new THREE.TextureLoader()
+    this.floorTextures = {}
+    this.floorTextures.color = textureLoader.load(dirtColorUrl)
+    this.floorTextures.color.encoding = THREE.sRGBEncoding
+    this.floorTextures.color.repeat.set(1.5, 1.5)
+    this.floorTextures.color.wrapS = THREE.RepeatWrapping
+    this.floorTextures.color.wrapT = THREE.RepeatWrapping
+
+    this.floorTextures.normal = textureLoader.load( dirtNormalUrl )
+    this.floorTextures.normal.repeat.set(1.5, 1.5)
+    this.floorTextures.normal.wrapS = THREE.RepeatWrapping
+    this.floorTextures.normal.wrapT = THREE.RepeatWrapping
+
+    // const material = new THREE.MeshBasicMaterial( {color: 0xff1600} );
+    const material =  new THREE.MeshStandardMaterial({
+      map: this.floorTextures.color,
+      normalMap: this.floorTextures.normal,
+      // wireframe: true
+    })
     this.plane = new THREE.Mesh( geometry, material );
     this.plane.rotateX(- Math.PI / 2)
     this.plane.translateZ(-1)
