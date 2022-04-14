@@ -50,6 +50,16 @@ body {
   font-size: 24px;
 }
 
+.hoverbtn {
+  font-size: 12px;
+  font-weight:normal;
+  display: none;
+}
+
+.btn:hover .hoverbtn{
+  display: block;
+}
+
 #msg-area {
   display: none;
   position: fixed;
