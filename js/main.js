@@ -131,7 +131,7 @@ mainService.subscribe((state) => {
   {  
     if ( stateStr === 'home' ) {
       if (stage.world) { killWorld() }
-      import('./worlds/HomeWorld.js')
+      import('./worlds/SplashWorld.js')
         .then((module) => 
         {
           stage.world = new module.default()
@@ -140,6 +140,36 @@ mainService.subscribe((state) => {
         })
     }
     if ( stateStr === 'threefirst' ) {
+      if (stage.world) { killWorld() }
+      import('./worlds/HomeWorld.js')
+        .then((module) => 
+        {
+          stage.world = new module.default()
+          stage.world.init()
+          stage.start()
+        })
+    }
+    if ( stateStr === 'threesecond' ) {
+      if (stage.world) { killWorld() }
+      import('./worlds/ThreeWorld.js')
+        .then((module) => 
+        {
+          stage.world = new module.default()
+          stage.world.init()
+          stage.start()
+        })
+    }
+    if ( stateStr === 'threethird' ) {
+      if (stage.world) { killWorld() }
+      import('./worlds/ThreeWorld.js')
+        .then((module) => 
+        {
+          stage.world = new module.default()
+          stage.world.init()
+          stage.start()
+        })
+    }
+    if ( stateStr === 'threeforth' ) {
       if (stage.world) { killWorld() }
       import('./worlds/ThreeWorld.js')
         .then((module) => 

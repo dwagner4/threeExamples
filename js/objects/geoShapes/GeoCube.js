@@ -6,7 +6,7 @@ export default class GeoCube
   {
     this.model = new THREE.Mesh(
       new THREE.BoxGeometry(size, size, size),
-      new THREE.MeshBasicMaterial( { color: color } )
+      new THREE.MeshPhongMaterial( { color: color } )
     )
   }
 

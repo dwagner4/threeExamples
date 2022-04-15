@@ -9,8 +9,6 @@ import Debug from './Debug.js'
 import { createGlbLoader } from './GlbLoader.js'
 
 /** Options */
-// import Resources from './Utils/Resources.js'
-// import sources from './Utils/sources.js'
 // import PhysWorld from './Utils/PhysWorld'
 // import PostProcess from '../systems/PostProcess.js'
 
@@ -67,6 +65,11 @@ export default class Stage
   disableVR() {
     this.renderer.instance.xr.enabled = false;
     document.getElementById('VRbtn')?.remove()
+  }
+
+  enablePhysics() 
+  {
+    this.physWorld = new PhysWorld()
   }
 
   init() 
