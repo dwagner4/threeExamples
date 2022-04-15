@@ -27,13 +27,8 @@ export default class DancingGirl
 
   async init()
   {
-    const dracoLoader = new DRACOLoader()
-    dracoLoader.setDecoderPath('/draco/')
-    const loader = new GLTFLoader();
-    loader.setDRACOLoader(dracoLoader)
-
     const [girlData] = await Promise.all([
-      loader.loadAsync(dancingGirlUrl),
+      this.stage.glbloader.loadAsync(dancingGirlUrl),
     ]);
 
     console.log(girlData)

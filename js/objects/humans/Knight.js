@@ -31,15 +31,10 @@ export default class Knight
 
   async init()
   {
-    const dracoLoader = new DRACOLoader()
-    dracoLoader.setDecoderPath('/draco/')
-    const loader = new GLTFLoader();
-    loader.setDRACOLoader(dracoLoader)
-
     const [knightData, walkingData, runningData] = await Promise.all([
-      loader.loadAsync(knightUrl),
-      loader.loadAsync(walkingUrl),
-      loader.loadAsync(runningUrl),
+      this.stage.glbloader.loadAsync(knightUrl),
+      this.stage.glbloader.loadAsync(walkingUrl),
+      this.stage.glbloader.loadAsync(runningUrl),
     ]);
 
     console.log(knightData)

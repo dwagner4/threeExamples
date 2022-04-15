@@ -6,6 +6,7 @@ import Renderer from './Renderer.js'
 import { CustomVRButton } from './CustomVRButton.js'
 import VRcontrollers from './VRcontrollers.js'
 import Debug from './Debug.js'
+import { createGlbLoader } from './GlbLoader.js'
 
 /** Options */
 // import Resources from './Utils/Resources.js'
@@ -34,6 +35,7 @@ export default class Stage
     this.sizes = new Sizes()
     this.time = new Time()
     this.debug = new Debug()
+    this.glbloader = createGlbLoader()
 
     this.camera = new Camera()
     this.renderer = new Renderer()
@@ -85,13 +87,14 @@ export default class Stage
     this.time.tick()
     this.camera.update()
     
-    // this.physWorld.step(
-    //   1/60,
-    //   this.time.delta,
-    //   3
-    // )
+    this.physWorld?.step(
+      1/60,
+      this.time.delta,
+      3
+    )
     this.world?.update()
     
+
     this.renderer.update()  // not needed with post processing
     // this.postProcessor.update()  // needed with postprocessing
   }
