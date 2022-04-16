@@ -1,7 +1,6 @@
 import Stage from '../../systems/Stage.js'
 import * as THREE from 'three'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
+
 
 import knightUrl from '../../../assets/models/knight/DracoKnight-idle.glb?url'
 import walkingUrl from '../../../assets/models/knight/walking.glb?url'

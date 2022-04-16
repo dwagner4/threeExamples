@@ -9,7 +9,7 @@ import Debug from './Debug.js'
 import { createGlbLoader } from './GlbLoader.js'
 
 /** Options */
-// import PhysWorld from './Utils/PhysWorld'
+import PhysWorld from './/PhysWorld.js'
 // import PostProcess from '../systems/PostProcess.js'
 
 let instance = null

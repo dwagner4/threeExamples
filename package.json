@@ -10,6 +10,7 @@
     "vite": "^2.8.6"
   },
   "dependencies": {
+    "cannon": "^0.6.2",
     "firebase": "^9.6.9",
     "gsap": "^3.9.1",
     "lil-gui": "^0.16.1",
