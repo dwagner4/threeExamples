@@ -1,4 +1,4 @@
-import CANNON from 'cannon'
+import * as CANNON from 'cannon-es'
 
 export default class PhysWorld extends CANNON.World
 {

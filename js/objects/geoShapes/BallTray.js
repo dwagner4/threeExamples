@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import Stage from '../../systems/Stage.js'
-import CANNON from 'cannon'
+import * as CANNON from 'cannon-es'
 
 import balltrayUrl from '../../../assets/models/balltray/balltray.glb?url'
 
