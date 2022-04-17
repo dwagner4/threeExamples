@@ -94,7 +94,7 @@ export default class SplashWorld
 
     // this.cube.model.removeFromParent()
     this.balltray.model.removeFromParent()
-    this.plane.removeFromParent()
+    // this.plane.removeFromParent()
     // this.hemilight.removeFromParent()
     this.pointlight.removeFromParent()
     // this.light.removeFromParent()
