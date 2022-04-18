@@ -16,7 +16,7 @@ export default class SplashWorld
     this.scene = this.stage.scene
     this.time = this.stage.time
     // this.scene.add 
-    this.scene.background = new THREE.Color(0x003049)
+    this.scene.background = new THREE.Color(0x0060a0)
     this.renderer = this.stage.renderer
 
     this.lastBall = 0
@@ -25,12 +25,12 @@ export default class SplashWorld
     // this.scene.add( this.hemilight );
 
     this.pointlight = new THREE.PointLight( 0xffaaaa, 5, 100 );
-    this.pointlight.position.set( 5, 5, 5 );
+    this.pointlight.position.set( 2, 2, 2 );
     this.scene.add( this.pointlight );
 
-    // this.light = new THREE.DirectionalLight( 0xffffff );
-    // this.light.position.set( 1, 1, 1 ).normalize();
-    // this.scene.add( this.light );
+    this.light = new THREE.DirectionalLight( 0xffffff );
+    this.light.position.set( 1, 1, 1 ).normalize();
+    this.scene.add( this.light );
 
     // this.theBall = new THREE.Mesh( 
     //   new THREE.SphereGeometry(1, 20, 20), 
@@ -60,14 +60,13 @@ export default class SplashWorld
     this.workingMatrix = new THREE.Matrix4()
     this.workingVector = new THREE.Vector3() 
 
-    this.fallingballs = new FallingBalls()
+    this.fallingballs = new FallingBalls(20)
     this.fallingballs.init()
 
     this.balltray = new BallTray()
     await this.balltray.init()
-    this.balltray.model.rotateX(- Math.PI / 2)
+    // this.balltray.model.rotateX(- Math.PI / 2)
     this.scene.add(this.balltray.model)
-
     this.stage.physWorld.addBody(this.balltray.body)
 
     mainService.send({type: 'LOADED'})

@@ -4,7 +4,7 @@ import Stage from '../../systems/Stage.js'
 
 export default class FallingBalls
 {
-  constructor()
+  constructor(numBalls)
   {
     this.stage = new Stage()
     this.theBalls = []
@@ -12,6 +12,7 @@ export default class FallingBalls
     this.lastBall = Date.now()
     this.ballcount = 0
     this.stage.enablePhysics()
+    this.numberOfBalls = numBalls
     // this.stage.world.objectsToUpdate.push(this)
   }
 
@@ -53,11 +54,21 @@ export default class FallingBalls
     const ballWait = currentTime - this.lastBall
     if (ballWait > 500) 
     {
-      const aBall = this.createABall()
-      // console.log(currentTime, this.lastBall, ballWait)
-      // console.log(this.theBalls)
+      if (this.theBalls.length < this.numberOfBalls) 
+      {
+        const aBall = this.createABall()
+        
+      }
+      else 
+      {
+        this.theBalls[this.ballcount].body.position = new CANNON.Vec3(0, 5, 0)
+        this.theBalls[this.ballcount].body.velocity = new CANNON.Vec3(0, 0, 0)
+        this.ballcount >= this.numberOfBalls - 1 ? this.ballcount = 0 : this.ballcount++
+        console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+      }
       this.lastBall = currentTime
     }
+    
 
     this.theBalls.forEach((b) => {
       b.model.position.copy(b.body.position)
