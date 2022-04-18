@@ -23,11 +23,12 @@ export default class FallingBalls
 
   createABall() 
   {
+    const ballRadius = Math.random() * 0.2 + 0.1
     const theBall = {}
     theBall.model = new THREE.Mesh( 
-      new THREE.SphereGeometry(0.2, 20, 20), 
+      new THREE.SphereGeometry(ballRadius, 20, 20), 
       new THREE.MeshStandardMaterial({
-        color: '#ff0000',
+        color: Math.random() * 0xffffff,//0x0000ff, //'#ff0000',
         metalness: 0.3,
         roughness: 0.4,
       }) 
@@ -35,10 +36,14 @@ export default class FallingBalls
     console.log(theBall)
     
 
-    const shape = new CANNON.Sphere(0.2)
+    const shape = new CANNON.Sphere(ballRadius)
     theBall.body = new CANNON.Body({
       mass: 1,
-      position: new CANNON.Vec3(0, 5, 0),
+      position: new CANNON.Vec3(
+        Math.random() * 1 - 0.5, 
+        5, 
+        Math.random() * 1 - 0.5
+      ),
       shape: shape,
       // material: this.physWorld.defaultContactMaterial 
     })
@@ -76,21 +81,9 @@ export default class FallingBalls
 
   }
 
-  dispose() {}
-  // const theBall = {}
-  // const geometry = new SphereGeometry(0.2, 20, 20)
-  // const material = new THREE.MeshStandardMaterial({
-  //   color: '#777777',
-  //   metalness: 0.3,
-  //   roughness: 0.4,
-  // })
-  // theBall.model = new THREE.Mesh( geometry, material )
-
-  // theBall.body = new CANNON.Body({
-  //   mass: 1,
-  //   position: new CANNON.Vec3(xx, 15, zz),
-  //   shape: shape,
-  //   // material: this.physWorld.defaultContactMaterial 
-  // })
+  dispose() {
+    this.theBalls.forEach( (el) => ell = null)
+  }
+  
 }
 

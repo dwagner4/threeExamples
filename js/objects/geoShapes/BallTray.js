@@ -20,14 +20,14 @@ export default class BallTray
     //   this.stage.glbloader.loadAsync(balltrayUrl),
     // ])
     // this.model = balltrayData.scene.children[0];
-    const geometry = new THREE.BoxGeometry( 3, 1, 3 );
+    const geometry = new THREE.BoxGeometry( 6, 0.5, 6 );
     const material = new THREE.MeshStandardMaterial( {color: 0x3388bb, roughness: 0.5,  metalness: 0.5} );
     this.model = new THREE.Mesh( geometry, material );
     // this.plane.rotateX(- Math.PI / 2)
     // this.plane.translateZ(-1)
     // this.scene.add( this.plane );
 
-    const floorShape = new CANNON.Box(new CANNON.Vec3(1.5, 1.5, 0.5),)
+    const floorShape = new CANNON.Box(new CANNON.Vec3(3, 3, 0.25),)
     this.body = new CANNON.Body()
     this.body.mass = 0
     this.body.quaternion.setFromAxisAngle( 

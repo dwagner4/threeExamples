@@ -55,7 +55,7 @@ export default class Knight
     this.animation.actions.walking = this.animation.mixer.clipAction(this.animations[1])
     this.animation.actions.running = this.animation.mixer.clipAction(this.animations[2])
 
-    this.animation.actions.current = this.animation.actions.idle
+    this.animation.actions.current = this.animation.actions.walking
     this.animation.actions.current.play()
 
     this.animation.play = (name) => 
