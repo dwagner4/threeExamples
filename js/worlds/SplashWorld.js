@@ -17,7 +17,7 @@ export default class SplashWorld
     this.time = this.stage.time
     // this.scene.add 
     this.scene.background = new THREE.Color(0x0060a0)
-    this.renderer = this.stage.renderer
+    this.renderer = this.stage.renderer.instance
 
     this.lastBall = 0
 
@@ -29,8 +29,32 @@ export default class SplashWorld
     this.scene.add( this.pointlight );
 
     this.light = new THREE.DirectionalLight( 0xffffff );
-    this.light.position.set( 1, 1, 1 ).normalize();
+    this.light.position.set( 10, 10, 10 ).normalize();
+    
+
+    this.light.castShadow = true
+    this.light.shadow.mapSize.width = 512
+    this.light.shadow.mapSize.height = 512
+    // console.log(this.light.shadow.camera)
+    this.light.shadow.camera.near = 0.5
+    this.light.shadow.camera.far = 500
+    // this.light.shadow.camera.top = 5
+    // this.light.shadow.camera.bottom = -5
+    // this.light.shadow.camera.left = 5
+    // this.light.shadow.camera.right = -5
+
+    // this.light.shadow.radius = 10
+
+    this.renderer.shadowMap.enabled = true
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
+
+    const dlCameraHelper = new THREE.CameraHelper(this.light.shadow.camera)
+    dlCameraHelper.visible = false
+    this.scene.add(dlCameraHelper)
+
     this.scene.add( this.light );
+
+    
 
     // this.theBall = new THREE.Mesh( 
     //   new THREE.SphereGeometry(1, 20, 20), 
@@ -59,6 +83,8 @@ export default class SplashWorld
     this.raycaster = new THREE.Raycaster()
     this.workingMatrix = new THREE.Matrix4()
     this.workingVector = new THREE.Vector3() 
+
+    
 
     this.fallingballs = new FallingBalls(20)
     this.fallingballs.init()

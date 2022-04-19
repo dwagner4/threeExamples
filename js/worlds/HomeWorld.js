@@ -23,7 +23,7 @@ export default class HomeWorld
     this.hemilight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 1 );
     this.scene.add( this.hemilight );
 
-    this.light = new THREE.DirectionalLight( 0xffffff );
+    this.light = new THREE.DirectionalLight( 0xffffff, 0.5 );
     this.light.position.set( 1, 1, 1 ).normalize();
     this.scene.add( this.light );
 

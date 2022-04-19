@@ -23,6 +23,7 @@ export default class BallTray
     const geometry = new THREE.BoxGeometry( 6, 0.5, 6 );
     const material = new THREE.MeshStandardMaterial( {color: 0x3388bb, roughness: 0.5,  metalness: 0.5} );
     this.model = new THREE.Mesh( geometry, material );
+    this.model.receiveShadow = true
     // this.plane.rotateX(- Math.PI / 2)
     // this.plane.translateZ(-1)
     // this.scene.add( this.plane );

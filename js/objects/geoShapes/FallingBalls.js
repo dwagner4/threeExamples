@@ -33,6 +33,7 @@ export default class FallingBalls
         roughness: 0.4,
       }) 
     )
+    theBall.model.castShadow = true
 
     
 
