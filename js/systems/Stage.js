@@ -16,7 +16,7 @@ let instance = null
 
 export default class Stage
 {
-  constructor(canvas)
+  constructor(canvas, controller = 'orbit')
   {
     if(instance) 
     {
@@ -35,7 +35,7 @@ export default class Stage
     this.debug = new Debug()
     this.glbloader = createGlbLoader()
 
-    this.camera = new Camera()
+    this.camera = new Camera(controller)
     this.renderer = new Renderer()
     // this.postProcessor = new PostProcess()
 

@@ -4,7 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 export default class Camera
 {
-  constructor()
+  constructor( controller = 'orbit' )
   {
     this.stage = new Stage()
     this.sizes = this.stage.sizes
@@ -12,7 +12,10 @@ export default class Camera
     this.canvas = this.stage.canvas
 
     this.setInstance()
-    this.setOrbitControls()
+    if (controller === 'orbit'){
+      this.setOrbitControls()
+    }
+    
   }
 
   setInstance()
