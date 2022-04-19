@@ -40,9 +40,9 @@ export default class FallingBalls
     theBall.body = new CANNON.Body({
       mass: 1,
       position: new CANNON.Vec3(
-        Math.random() * 1 - 0.5, 
-        5, 
-        Math.random() * 1 - 0.5
+        Math.random() * 3 - 1.5, 
+        6, 
+        Math.random() * 3 - 1.5
       ),
       shape: shape,
       // material: this.physWorld.defaultContactMaterial 
@@ -57,7 +57,7 @@ export default class FallingBalls
     
     const currentTime = Date.now()
     const ballWait = currentTime - this.lastBall
-    if (ballWait > 500) 
+    if (ballWait > 200) 
     {
       if (this.theBalls.length < this.numberOfBalls) 
       {
@@ -66,7 +66,11 @@ export default class FallingBalls
       }
       else 
       {
-        this.theBalls[this.ballcount].body.position = new CANNON.Vec3(0, 5, 0)
+        this.theBalls[this.ballcount].body.position = new CANNON.Vec3(
+          Math.random() * 3 - 1.5, 
+          6, 
+          Math.random() * 3 - 1.5
+        )
         this.theBalls[this.ballcount].body.velocity = new CANNON.Vec3(0, 0, 0)
         this.ballcount >= this.numberOfBalls - 1 ? this.ballcount = 0 : this.ballcount++
       }
