@@ -40,7 +40,7 @@ export default class AboutWorld
     this.workingMatrix = new THREE.Matrix4()
     this.workingVector = new THREE.Vector3() 
 
-    this.cube = new GeoCube(1, 0xbb8844)
+    this.cube = new GeoCube(1, 0xff0000)
     this.scene.add(this.cube.model)
     this.objectsToUpdate.push(this.cube)
 

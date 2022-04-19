@@ -33,7 +33,7 @@ export default class FallingBalls
         roughness: 0.4,
       }) 
     )
-    console.log(theBall)
+
     
 
     const shape = new CANNON.Sphere(ballRadius)
@@ -69,7 +69,6 @@ export default class FallingBalls
         this.theBalls[this.ballcount].body.position = new CANNON.Vec3(0, 5, 0)
         this.theBalls[this.ballcount].body.velocity = new CANNON.Vec3(0, 0, 0)
         this.ballcount >= this.numberOfBalls - 1 ? this.ballcount = 0 : this.ballcount++
-        console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
       }
       this.lastBall = currentTime
     }

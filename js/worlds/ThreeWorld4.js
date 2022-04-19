@@ -3,7 +3,7 @@ import * as THREE from 'three'
 import GeoCube from '../objects/geoShapes/GeoCube.js'
 import { mainService } from '../mainMachine.js'
 
-export default class ARWorld
+export default class ThreeWorld4
 {
   constructor()
   {     
@@ -16,8 +16,8 @@ export default class ARWorld
     this.scene.background = new THREE.Color(0x003049)
     this.renderer = this.stage.renderer
 
-    // this.hemilight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 1 );
-    // this.scene.add( this.hemilight );
+    this.hemilight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 1 );
+    this.scene.add( this.hemilight );
 
     this.light = new THREE.DirectionalLight( 0xffffff );
     this.light.position.set( 1, 1, 1 ).normalize();
@@ -40,10 +40,10 @@ export default class ARWorld
     this.workingMatrix = new THREE.Matrix4()
     this.workingVector = new THREE.Vector3() 
 
-    this.cube = new GeoCube(1, 0xffffff)
+    this.cube = new GeoCube(1, 0xd62828)
     this.scene.add(this.cube.model)
     this.objectsToUpdate.push(this.cube)
-    
+
     mainService.send({type: 'LOADED'})
   }
 
@@ -61,17 +61,17 @@ export default class ARWorld
 
   dispose() {
     this.stage.disableVR()
-
+    
     this.cube.model.removeFromParent()
     this.plane.removeFromParent()
-    // this.hemilight.removeFromParent()
+    this.hemilight.removeFromParent()
     this.light.removeFromParent()
-
+    
     // this.light.removeFromParent()
     // console.log("aaa")
     // this.hemiblight.removeFromParent()
     // console.log("aaaa")
     // this.plane.removeFromParent()
-
+    
   }
 }

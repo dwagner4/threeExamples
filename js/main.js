@@ -151,7 +151,7 @@ mainService.subscribe((state) => {
     }
     if ( stateStr === 'threesecond' ) {
       if (stage.world) { killWorld() }
-      import('./worlds/ThreeWorld.js')
+      import('./worlds/ThreeWorld2.js')
         .then((module) => 
         {
           stage.world = new module.default()
@@ -161,7 +161,7 @@ mainService.subscribe((state) => {
     }
     if ( stateStr === 'threethird' ) {
       if (stage.world) { killWorld() }
-      import('./worlds/ThreeWorld.js')
+      import('./worlds/ThreeWorld3.js')
         .then((module) => 
         {
           stage.world = new module.default()
@@ -171,7 +171,7 @@ mainService.subscribe((state) => {
     }
     if ( stateStr === 'threeforth' ) {
       if (stage.world) { killWorld() }
-      import('./worlds/ThreeWorld.js')
+      import('./worlds/ThreeWorld4.js')
         .then((module) => 
         {
           stage.world = new module.default()
