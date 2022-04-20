@@ -6,7 +6,7 @@ import Renderer from './Renderer.js'
 import { CustomVRButton } from './CustomVRButton.js'
 import VRcontrollers from './VRcontrollers.js'
 import Debug from './Debug.js'
-import { createGlbLoader } from './GlbLoader.js'
+import { createGlbLoader } from './Loader.js'
 
 /** Options */
 import PhysWorld from './/PhysWorld.js'
