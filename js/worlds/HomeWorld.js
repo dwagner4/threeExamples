@@ -13,7 +13,7 @@ export default class HomeWorld
     console.log("in the constructor")
 
     this.stage = new Stage()
-    this.stage.camera.instance.position.set(0,1.6,5)
+    this.stage.camera.position.set(0,1.6,5)
     this.scene = this.stage.scene
     this.time = this.stage.time
     // this.scene.add 

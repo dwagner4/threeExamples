@@ -63,7 +63,7 @@ export default class VRcontrollers
       })
       console.log('WTF?', hasCamera)
       if (!hasCamera) {
-        self.stage.world.dolly.add( self.stage.camera.instance )
+        self.stage.world.dolly.add( self.stage.camera )
         self.stage.world.dolly.userData.camera = true
       }
     }
@@ -108,7 +108,7 @@ export default class VRcontrollers
         //   if (child.userData.camera) {hasCamera = true}
         // })
         // if (!hasCamera) {
-        //   this.stage.world.dolly.add( this.stage.camera.instance )
+        //   this.stage.world.dolly.add( this.stage.camera )
         //   this.stage.world.dolly.userData.camera = true
         //   console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
         // }

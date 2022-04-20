@@ -13,7 +13,7 @@ export default class VRWorld
   {     
     console.log("in the constructor")
     this.stage = new Stage()
-    this.stage.camera.instance.position.set(0,1.6,5)
+    this.stage.camera.position.set(0,1.6,5)
     this.scene = this.stage.scene
     this.time = this.stage.time
     // this.scene.add 
@@ -51,7 +51,7 @@ export default class VRWorld
     // console.log(this.knight.mixer)
 
     this.dolly = new THREE.Object3D();
-    // this.dolly.add( this.stage.camera.instance );
+    // this.dolly.add( this.stage.camera );
     this.dolly.position.set(0,0,5)
     this.scene.add( this.dolly );
 
@@ -68,12 +68,12 @@ export default class VRWorld
       })
 
       // this.dolly = new THREE.Object3D();
-      // this.dolly.add( this.stage.camera.instance );
+      // this.dolly.add( this.stage.camera );
       // this.dolly.position.set(1,1,5)
       // this.scene.add( this.dolly );
       
       // this.dummyCam = new THREE.Object3D();
-      // this.stage.camera.instance.add( this.dummyCam );
+      // this.stage.camera.add( this.dummyCam );
     }
 
    

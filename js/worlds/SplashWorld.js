@@ -12,7 +12,7 @@ export default class SplashWorld
   {     
     console.log("in the constructor")
     this.stage = new Stage()
-    this.stage.camera.instance.position.set(0,3,16)
+    this.stage.camera.position.set(0,3,16)
     this.scene = this.stage.scene
     this.time = this.stage.time
     // this.scene.add 

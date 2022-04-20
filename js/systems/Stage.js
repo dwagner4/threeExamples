@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import * as dat from 'lil-gui'
-import Camera from './Camera.js'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 import { CustomVRButton } from './CustomVRButton.js'
 import VRcontrollers from './VRcontrollers.js'
@@ -52,7 +52,16 @@ export default class Stage
     this.glbloader = createGlbLoader()
     this.canvas = canvas
     this.scene = new THREE.Scene()
-    this.camera = new Camera(config.controller)
+
+
+    this.camera = new THREE.PerspectiveCamera(
+      35, 
+      this.sizes.width / this.sizes.height,
+      0.1,
+      100
+    )
+    this.controls = new OrbitControls(this.camera, this.canvas)
+    this.controls.enableDamping = true
 
 
     this.renderer = new THREE.WebGLRenderer({
@@ -85,7 +94,8 @@ export default class Stage
     
     // this.postProcessor.resize()
     
-    this.camera.resize()
+    this.camera.aspect = this.sizes.width / this.sizes.height
+    this.camera.updateProjectionMatrix()
   }
 
   enableVR( gripModels, controllerHandlers ) {
@@ -95,7 +105,7 @@ export default class Stage
 
     // this.dolly = new THREE.Object3D();
     // this.dolly.position.z = 0;
-    // this.dolly.add( this.stage.camera.instance );
+    // this.dolly.add( this.stage.camera );
     // this.dolly.position.set(1,1,5)
     // this.scene.add( this.dolly );
   }
@@ -125,7 +135,7 @@ export default class Stage
     this.time.current = currentTime
     this.time.elapsed = this.current - this.time.start
 
-    this.camera.update()
+    this.controls.update()
     
     this.physWorld?.step(
       1/60,
@@ -135,7 +145,7 @@ export default class Stage
     this.world?.update()
 
     // not needed with post processing
-    this.renderer.render(this.scene, this.camera.instance)  
+    this.renderer.render(this.scene, this.camera)  
     // this.postProcessor.update()  // needed with postprocessing
   }
 
