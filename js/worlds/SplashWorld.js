@@ -29,6 +29,7 @@ export default class SplashWorld
     this.scene.add( this.pointlight );
 
     this.light = new THREE.DirectionalLight( 0xffffff, 0.75 );
+    this.light.name = 'Splash'
     this.light.position.set( 10, 10, 10 ).normalize();
     
 
@@ -47,10 +48,6 @@ export default class SplashWorld
 
     this.renderer.shadowMap.enabled = true
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
-
-    const dlCameraHelper = new THREE.CameraHelper(this.light.shadow.camera)
-    dlCameraHelper.visible = false
-    this.scene.add(dlCameraHelper)
 
     this.scene.add( this.light );
 
@@ -123,7 +120,7 @@ export default class SplashWorld
     // this.plane.removeFromParent()
     // this.hemilight.removeFromParent()
     this.pointlight.removeFromParent()
-    // this.light.removeFromParent()
+    this.light.removeFromParent()
 
     // this.light.removeFromParent()
     // console.log("aaa")

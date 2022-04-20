@@ -15,7 +15,7 @@ let instance = null
 
 export default class Stage
 {
-  constructor(canvas, config = {controller:'orbit', debug: true})
+  constructor(canvas, config = {controller:'orbit', debug: false})
   {
     if(instance) 
     {
@@ -43,13 +43,12 @@ export default class Stage
       delta: 16,
       elapsed: 0,
     }
-    if (config.debug) 
-    { 
-      this.debug = {
-        active: window.location.hash === '#debug',
-        ui: new dat.GUI()
-      }
+
+    this.debug = {
+      active: config.debug,
     }
+    if (config.debug) { this.debug.ui = new dat.GUI()}
+
     this.glbloader = createGlbLoader()
     this.canvas = canvas
     this.scene = new THREE.Scene()

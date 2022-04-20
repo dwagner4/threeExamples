@@ -137,6 +137,7 @@ mainService.subscribe((state) => {
           stage.world = new module.default()
           stage.world.init()
           stage.start()
+          console.log(stage.world)
         })
     }
     if ( stateStr === 'threefirst' ) {
