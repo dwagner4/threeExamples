@@ -18,7 +18,7 @@ export default class VRcontrollers
   {
     this.stage = new Stage()
     this.scene = this.stage.scene
-    this.renderer = this.stage.renderer.instance
+    this.renderer = this.stage.renderer
 
     this.rightAxes = [  ]
     this.leftAxes = [  ]

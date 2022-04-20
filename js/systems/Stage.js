@@ -1,11 +1,10 @@
 import * as THREE from 'three'
-import Sizes from './Sizes.js'
-import Time from './Time.js'
+import * as dat from 'lil-gui'
 import Camera from './Camera.js'
-import Renderer from './Renderer.js'
+
 import { CustomVRButton } from './CustomVRButton.js'
 import VRcontrollers from './VRcontrollers.js'
-import Debug from './Debug.js'
+
 import { createGlbLoader } from './Loader.js'
 
 /** Options */
@@ -16,7 +15,7 @@ let instance = null
 
 export default class Stage
 {
-  constructor(canvas, controller = 'orbit')
+  constructor(canvas, config = {controller:'orbit', debug: true})
   {
     if(instance) 
     {
@@ -24,35 +23,75 @@ export default class Stage
     }
     instance = this
 
-    this.name = "Stage 0"
     // Options
-    this.canvas = canvas
-    this.scene = new THREE.Scene()
+    this.config = config
+    
 
     // Setup
-    this.sizes = new Sizes()
-    this.time = new Time()
-    this.debug = new Debug()
-    this.glbloader = createGlbLoader()
+    this.sizes = {
+      width: window.innerWidth,
+      height: window.innerHeight,
+      pixelRatio: Math.min(window.devicePixelRatio, 2),
+    }
+    window.addEventListener('resize', () => this.resize)
 
-    this.camera = new Camera(controller)
-    this.renderer = new Renderer()
+
+    this.time = {
+      start: Date.now(),
+      current: Date.now(),
+      elapsedTime: 0,
+      delta: 16,
+      elapsed: 0,
+    }
+    if (config.debug) 
+    { 
+      this.debug = {
+        active: window.location.hash === '#debug',
+        ui: new dat.GUI()
+      }
+    }
+    this.glbloader = createGlbLoader()
+    this.canvas = canvas
+    this.scene = new THREE.Scene()
+    this.camera = new Camera(config.controller)
+
+
+    this.renderer = new THREE.WebGLRenderer({
+      canvas: this.canvas,
+      antialias: true,
+      physicallyCorrectLights: true,
+      outputEncoding: THREE.sRGBEncoding,
+      toneMapping: THREE.CineonToneMapping,
+      toneMappingExposure: 1.75,
+    })
+    this.renderer.shadowMap.enabled = true  // needed? maybe set in world
+    this.renderer.shadowMap.type =THREE.PCFSoftShadowMap // needed? maybe set in world
+    this.renderer.setClearColor('#211d20')
+    this.renderer.setSize(this.sizes.width, this.sizes.height)
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     // this.postProcessor = new PostProcess()
 
-
-    //  Sizes resize event
-    this.sizes.on('resize', () => 
-    {
-      this.resize()
-    })
-
     /** initially setting animation loop to null, later call start() in main.js */
-    this.renderer.instance.setAnimationLoop( null )
+    this.renderer.setAnimationLoop( null )
+  }
+
+  resize()
+  {
+    this.sizes.width = window.innerWidth
+    this.sizes.height = window.innerHeight
+    this.sizes.pixelRatio = Math.min(window.devicePixelRatio, 2)
+
+    this.renderer.setSize(this.sizes.width, this.sizes.height)
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    
+    // this.postProcessor.resize()
+    
+    this.camera.resize()
   }
 
   enableVR( gripModels, controllerHandlers ) {
-    this.renderer.instance.xr.enabled = true;
-    this.VRbtn = new CustomVRButton(this.renderer.instance);
+    this.renderer.xr.enabled = true;
+    this.VRbtn = new CustomVRButton(this.renderer);
     this.controls =  new VRcontrollers( gripModels, controllerHandlers )
 
     // this.dolly = new THREE.Object3D();
@@ -63,7 +102,7 @@ export default class Stage
   }
 
   disableVR() {
-    this.renderer.instance.xr.enabled = false;
+    this.renderer.xr.enabled = false;
     document.getElementById('VRbtn')?.remove()
   }
 
@@ -78,16 +117,15 @@ export default class Stage
     // this.scene.background = color
   }
 
-  resize()
-  {
-    this.renderer.resize()
-    // this.postProcessor.resize()
-    this.camera.resize()
-  }
+  
 
   update()
   {
-    this.time.tick()
+    const currentTime = Date.now()
+    this.time.delta = currentTime - this.time.current
+    this.time.current = currentTime
+    this.time.elapsed = this.current - this.time.start
+
     this.camera.update()
     
     this.physWorld?.step(
@@ -96,15 +134,15 @@ export default class Stage
       3
     )
     this.world?.update()
-    
 
-    this.renderer.update()  // not needed with post processing
+    // not needed with post processing
+    this.renderer.render(this.scene, this.camera.instance)  
     // this.postProcessor.update()  // needed with postprocessing
   }
 
   start()
   {
-    this.renderer.instance.setAnimationLoop( () => 
+    this.renderer.setAnimationLoop( () => 
     {
       this.update()
     })
@@ -112,7 +150,7 @@ export default class Stage
 
   stop()
   {
-    this.renderer.instance.setAnimationLoop( null )
+    this.renderer.setAnimationLoop( null )
   }
 
   destroy()
@@ -138,7 +176,7 @@ export default class Stage
     })
 
     this.camera.controls.dispose()
-    this.renderer.instance.dispose()
+    this.renderer.dispose()
     if(this.debug.active)
     {
       this.debug.ui.destroy()

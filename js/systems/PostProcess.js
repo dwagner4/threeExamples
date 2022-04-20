@@ -11,7 +11,7 @@ export default class PostProcess
     this.scene = this.stage.scene
     this.sizes = this.stage.sizes
     this.camera = this.stage.camera.instance
-    this.renderer = this.stage.renderer.instance
+    this.renderer = this.stage.renderer
     
     this.renderTarget = new THREE.WebGLMultipleRenderTargets(
       800,

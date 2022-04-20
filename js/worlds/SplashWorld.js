@@ -17,18 +17,18 @@ export default class SplashWorld
     this.time = this.stage.time
     // this.scene.add 
     this.scene.background = new THREE.Color(0x0060a0)
-    this.renderer = this.stage.renderer.instance
+    this.renderer = this.stage.renderer
 
     this.lastBall = 0
 
     // this.hemilight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 1 );
     // this.scene.add( this.hemilight );
 
-    this.pointlight = new THREE.PointLight( 0xffaaaa, 5, 100 );
+    this.pointlight = new THREE.PointLight( 0xffaaaa, 0.5, 20 );
     this.pointlight.position.set( 2, 2, 2 );
     this.scene.add( this.pointlight );
 
-    this.light = new THREE.DirectionalLight( 0xffffff );
+    this.light = new THREE.DirectionalLight( 0xffffff, 0.75 );
     this.light.position.set( 10, 10, 10 ).normalize();
     
 
