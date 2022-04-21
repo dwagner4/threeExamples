@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import * as dat from 'lil-gui'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { FlyControls } from 'three/examples/jsm/controls/FlyControls.js';
 
 import { CustomVRButton } from './CustomVRButton.js'
 import VRcontrollers from './VRcontrollers.js'
@@ -39,7 +40,6 @@ export default class Stage
     this.time = {
       start: Date.now(),
       current: Date.now(),
-      elapsedTime: 0,
       delta: 16,
       elapsed: 0,
     }
@@ -60,8 +60,11 @@ export default class Stage
       0.1,
       100
     )
-    this.controls = new OrbitControls(this.camera, this.canvas)
-    this.controls.enableDamping = true
+
+    this.setControls(this.config.controller)
+
+    // this.controls = new OrbitControls(this.camera, this.canvas)
+    // this.controls.enableDamping = true
 
 
     this.renderer = new THREE.WebGLRenderer({
@@ -96,6 +99,27 @@ export default class Stage
     
     this.camera.aspect = this.sizes.width / this.sizes.height
     this.camera.updateProjectionMatrix()
+  }
+
+  setControls(type)
+  {
+    console.log(type)
+    if (type === 'orbit')
+    {
+      this.controls = new OrbitControls(this.camera, this.canvas)
+      this.controls.enableDamping = true
+    }
+    if ( type === 'fly' )
+    {
+      this.controls = new FlyControls( this.camera, this.canvas );
+
+      // this.controls.movementSpeed = 1000;
+      // this.controls.domElement = this.canvas;
+      // this.controls.rollSpeed = Math.PI / 24;
+      // this.controls.autoForward = false;
+      this.controls.dragToLook = true;
+    }
+    console.log(this.controls)
   }
 
   enableVR( gripModels, controllerHandlers ) {
@@ -135,7 +159,8 @@ export default class Stage
     this.time.current = currentTime
     this.time.elapsed = this.current - this.time.start
 
-    this.controls.update()
+    
+    this.controls?.update(this.time.delta)
     
     this.physWorld?.step(
       1/60,
