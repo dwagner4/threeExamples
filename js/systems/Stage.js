@@ -58,7 +58,7 @@ export default class Stage
       35, 
       this.sizes.width / this.sizes.height,
       0.1,
-      100
+      1000
     )
 
     this.setControls(this.config.controller)
