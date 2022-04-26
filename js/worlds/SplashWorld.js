@@ -33,6 +33,10 @@ export default class SplashWorld
     this.light.position.set( 10, 10, 10 ).normalize();
     
 
+    const axesHelper = new THREE.AxesHelper( 5 );
+    this.scene.add( axesHelper );
+    this.stage.setControls({ type:'orbit'})
+
     this.light.castShadow = true
     this.light.shadow.mapSize.width = 512
     this.light.shadow.mapSize.height = 512
